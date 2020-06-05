@@ -1,22 +1,15 @@
 from numpy import asarray, zeros
 import pandas as pd
-import nltk
-import re
-from nltk.tag import DefaultTagger
 from nltk.tokenize import sent_tokenize
-from nltk.corpus import stopwords
 from os import path
 import networkx as nx
-from numpy.core.defchararray import strip
-from pandas.core.ops import kleene_and
-import os,sys
-from scipy import stats
-from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
-import test as fe
 from time import time
 from sklearn.metrics.pairwise import cosine_similarity
+
+
+#from front import fileDialog as fe
 def Summarize():
-    datafile=fe.fileDialog.text1
+    datafile="train.csv"
     df=pd.read_csv(datafile)
     sentences = []
     df.dropna()
@@ -65,7 +58,7 @@ def Summarize():
         coefs = asarray(values[2:], dtype='float32')
         word_embeddings[word] = coefs
     f.close()
-    print("total word vectors for the given article\n ",len(word_embeddings))
+    print("total word vectors for the given article: ",len(word_embeddings))
 
     #sentense vectors ceating
     sentence_vectors = []
@@ -92,19 +85,28 @@ def Summarize():
 
 
 
-
-    t1=time()
     nx_graph = nx.from_numpy_array(sim_mat)
+    t1 = time()
     scores = nx.pagerank(nx_graph)
+    t2 = time()
     ranked_sentences = sorted(((scores[i],s) for i,s in enumerate(sentences)), reverse=True)
-    t2=time()
-    print("TextRank algorithm Run time : %f \n"%(t2-t1))
+
+    print("TextRank algorithm Run time : %f "%(t2-t1),"seconds")
     # Extract top  sentences as the summary
     how_many=int(input("\n\nHow many lines You want to display the Summary?  :"))
+    print("\n\n=================this is your Summarized document=============== \n\n")
+    Summarize.summarized_data=[]
+
     for i in range(how_many):
       print(ranked_sentences[i][1])
-    print("\n\n=================this is your original document=============== \n",p['headline'])
+      Summarize.summarized_data.append(ranked_sentences[i][1])
+
+    print("\n\n=================this is your original document=============== \n\n",p['headline'])
     # stuff to run always here such as class/def
+    return
+
+
+
 
 
 
@@ -113,4 +115,4 @@ if __name__ == "__main__":
    t3=time()
    Summarize()
    t4=time()
-   print("total time to execute entire code: %f\n"%(t4-t3))
+   print("total time to execute program code: %f "%(t4-t3),"seconds")
