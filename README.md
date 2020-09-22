@@ -15,17 +15,14 @@ from data cleaning to generate summary have done with specification and handled 
 exception.
 
 
-The main objective of the project is to construct a text summarisation software that
-specifically summarizes documents and articles in Kannada language while maintain its
-original. It achieves this by
- The proposed system first takes the given the given Kannada document cleans
-and formats it
- Then the Kannada word embedding’s found for the cleaned document.
-
-28 | P a g
-e
- The processed document undergoes cosine similarity to find similarity matrix is
-found
- Finally, the summarized form of the input document is obtained using the text
-rank algorithm.
-By this process, we aim to obtain a summary any Kannada document.
+Text summarization is process of reducing the size of the text data and obtains a
+meaningful para in any language. This can be either Abstractive or Extractive way.
+We are going to implement the Extractive text summarization in Kannada language
+using the NLP, unsupervised technique. Kannada is a major language in Karnataka in
+written and speaking both perspectives. in implementation no efficient text summarizer is available till now! This becomes a major challenge to implement a efficient and
+easy text summarizer to kannada people who can write and read kannada text. to
+achieve this challenge we have used TextRank algorithm as our implementation major
+part. This algorithm is quite similar to google page rank algorithm which we most
+familiar. Major difference is that, in page rank algorithm, we are referring a particular
+page and it is ranking, in other hand TextRank is focusing on text data, sentences.
+This will give us a ranking value to the particular sentence. Which mean how important is that sentence in the given context? This is era behind the Text summarization, we are extracting high ranked sentence as our summary content.
