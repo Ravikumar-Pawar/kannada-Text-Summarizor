@@ -27,4 +27,4 @@ familiar. Major difference is that, in page rank algorithm, we are referring a p
 page and it is ranking, in other hand TextRank is focusing on text data, sentences.
 This will give us a ranking value to the particular sentence. Which mean how important is that sentence in the given context? This is era behind the Text summarization, we are extracting high ranked sentence as our summary content.
 
-![Rouge_results](https://github.com/Ravikumar-Pawar/kannada-Text-Summarizor/tree/master/Images/)
+![Rouge_results](https://github.com/Ravikumar-Pawar/kannada-Text-Summarizor/tree/master/Images/rouge_result.jpg)
